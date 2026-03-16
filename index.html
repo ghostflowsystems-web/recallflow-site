@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RecallFlow â Never Lose a Patient to a Missed Call Again</title>
+  <title>RecallFlow — Never Lose a Patient to a Missed Call Again</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -30,7 +30,7 @@
       line-height: 1.6;
     }
 
-    /* ââ NAV ââ */
+    /* ── NAV ── */
     nav {
       position: sticky; top: 0; z-index: 100;
       background: rgba(255,255,255,0.92);
@@ -60,7 +60,7 @@
     }
     .btn-nav:hover { background: var(--teal-dark); }
 
-    /* ââ HERO ââ */
+    /* ── HERO ── */
     .hero {
       padding: 100px 5% 80px;
       text-align: center;
@@ -74,13 +74,13 @@
       background: radial-gradient(circle, rgba(15,118,110,0.08) 0%, transparent 70%);
       pointer-events: none;
     }
-    .hero-b!dge {
+    .hero-badge {
       display: inline-flex; align-items: center; gap: 6px;
       background: var(--teal-light); color: var(--teal);
       font-size: 0.8rem; font-weight: 600; letter-spacing: 0.5px;
       padding: 5px 14px; border-radius: 100px; margin-bottom: 28px;
     }
-    .hero-badge::before { content: 'â'; font-size: 0.5rem; }
+    .hero-badge::before { content: '●'; font-size: 0.5rem; }
     .hero h1 {
       font-size: clamp(2.2rem, 5vw, 3.8rem);
       font-weight: 900; line-height: 1.1;
@@ -120,7 +120,7 @@
       margin-top: 20px; font-size: 0.8rem; color: var(--muted);
     }
 
-    /* ââ SOCIAL PROOF BAR ââ */
+    /* ── SOCIAL PROOF BAR ── */
     .proof-bar {
       background: var(--surface); border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
@@ -135,7 +135,7 @@
     .proof-bar span strong { color: var(--text); font-weight: 700; }
     .proof-dot { color: var(--border); }
 
-    /* ââ PROBLEM ââ */
+    /* ── PROBLEM ── */
     .section { padding: 80px 5%; }
     .section-label {
       font-size: 0.75rem; font-weight: 700; letter-spacing: 1.5px;
@@ -170,7 +170,7 @@
     .problem-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
     .problem-card p { font-size: 0.875rem; color: var(--muted); line-height: 1.6; }
 
-    /* ââ HOW IT WORKS ââ */
+    /* ── HOW IT WORKS ── */
     .how-section {
       background: var(--surface);
       padding: 80px 5%;
@@ -188,7 +188,7 @@
       padding: 32px 24px; text-align: center; position: relative;
     }
     .step:not(:last-child)::after {
-      content: 'â';
+      content: '→';
       position: absolute; right: -12px; top: 50%;
       transform: translateY(-50%);
       font-size: 1.4rem; color: var(--border);
@@ -203,7 +203,7 @@
     .step h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
     .step p { font-size: 0.85rem; color: var(--muted); }
 
-    /* ââ FEATURES ââ */
+    /* ── FEATURES ── */
     .features-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -229,7 +229,7 @@
     .feature-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; }
     .feature-card p { font-size: 0.875rem; color: var(--muted); line-height: 1.6; }
 
-    /* ââ PRICING ââ */
+    /* ── PRICING ── */
     .pricing-section {
       background: var(--surface);
       padding: 80px 5%;
@@ -283,7 +283,7 @@
       font-size: 0.875rem; padding: 6px 0;
       display: flex; align-items: flex-start; gap: 10px;
     }
-    .feature-list li::before { content: 'â'; font-weight: 700; color: var(--teal); flex-shrink: 0; margin-top: 1px; }
+    .feature-list li::before { content: '✓'; font-weight: 700; color: var(--teal); flex-shrink: 0; margin-top: 1px; }
     .pricing-card.featured .feature-list li::before { color: #A7F3D0; }
     .pricing-card.featured .feature-list li { color: rgba(255,255,255,0.9); }
     .btn-plan {
@@ -299,7 +299,7 @@
     }
     .pricing-card.featured .btn-plan:hover { background: #F0FDFA; }
 
-    /* ââ TESTIMONIALS ââ */
+    /* ── TESTIMONIALS ── */
     .testimonials-section { padding: 80px 5%; }
     .testimonials-section h2 { margin-bottom: 48px; }
     .testimonials-grid {
@@ -329,7 +329,7 @@
     .author-name { font-size: 0.875rem; font-weight: 700; }
     .author-role { font-size: 0.8rem; color: var(--muted); }
 
-    /* ââ CTA BANNER ââ */
+    /* ── CTA BANNER ── */
     .cta-section {
       background: var(--teal);
       padding: 80px 5%; text-align: center;
@@ -368,7 +368,7 @@
       margin-top: 20px; font-size: 0.82rem; color: rgba(255,255,255,0.65);
     }
 
-    /* ââ FOOTER ââ */
+    /* ── FOOTER ── */
     footer {
       background: var(--text); color: rgba(255,255,255,0.5);
       padding: 40px 5%;
@@ -379,7 +379,7 @@
     footer a { color: rgba(255,255,255,0.5); text-decoration: none; }
     footer a:hover { color: rgba(255,255,255,0.8); }
 
-    /* ââ RESPONSIVE ââ */
+    /* ── RESPONSIVE ── */
     @media (max-width: 640px) {
       nav { padding: 0 4%; }
       .nav-links { display: none; }
@@ -405,24 +405,24 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-badge">Built for Dental Clinics</div>
-  <h1>Your practice loses <em>Â£4,200/month</em> to missed calls. We stop that.</h1>
-  <p>RecallFlow installs an AI phone agent on your clinic line in 48 hours. Every missed call gets a follow-up text within 60 seconds â automatically.</p>
+  <h1>Your practice loses <em>£4,200/month</em> to missed calls. We stop that.</h1>
+  <p>RecallFlow installs an AI phone agent on your clinic line in 48 hours. Every missed call gets a follow-up text within 60 seconds — automatically.</p>
   <div class="hero-cta">
-    <a href="#demo" class="btn-primary">See It in Action â</a>
+    <a href="#demo" class="btn-primary">See It in Action →</a>
     <a href="#how" class="btn-secondary">How It Works</a>
   </div>
-  <p class="hero-sub">No long-term contracts Â· Setup in 48 hours Â· Works with your existing phone number</p>
+  <p class="hero-sub">No long-term contracts · Setup in 48 hours · Works with your existing phone number</p>
 </section>
 
 <!-- SOCIAL PROOF BAR -->
 <div class="proof-bar">
   <span><strong>62%</strong> of callers hang up if not answered</span>
-  <span class="proof-dot">Â·</span>
+  <span class="proof-dot">·</span>
   <span><strong>85%</strong> of them won't call back</span>
-  <span class="proof-dot">Â·</span>
+  <span class="proof-dot">·</span>
   <span><strong>1 in 4</strong> missed calls is a new patient enquiry</span>
-  <span class="proof-dot">Â·</span>
-  <span><strong>Â£150+</strong> avg new patient LTV in dentistry</span>
+  <span class="proof-dot">·</span>
+  <span><strong>£150+</strong> avg new patient LTV in dentistry</span>
 </div>
 
 <!-- PROBLEM -->
@@ -440,17 +440,17 @@
     <div class="problem-card">
       <div class="stat">7</div>
       <h3>New patients lost monthly</h3>
-      <p>If even 25% of missed callers were new patient enquiries, that's 7 patients â and roughly Â£1,050+ in lost first-appointment revenue alone.</p>
+      <p>If even 25% of missed callers were new patient enquiries, that's 7 patients — and roughly £1,050+ in lost first-appointment revenue alone.</p>
     </div>
     <div class="problem-card">
       <div class="stat">60s</div>
       <h3>The response window</h3>
-      <p>Studies show leads responded to within 60 seconds are 21Ã more likely to convert. After 5 minutes, that chance drops by 80%.</p>
+      <p>Studies show leads responded to within 60 seconds are 21× more likely to convert. After 5 minutes, that chance drops by 80%.</p>
     </div>
     <div class="problem-card">
-      <div class="stat">Â£0</div>
+      <div class="stat">£0</div>
       <h3>What your voicemail earns you</h3>
-      <p>Less than 20% of callers leave a voicemail. The other 80% hang up and Google "dentist near me" again â and find someone else.</p>
+      <p>Less than 20% of callers leave a voicemail. The other 80% hang up and Google "dentist near me" again — and find someone else.</p>
     </div>
   </div>
 </section>
@@ -466,7 +466,7 @@
       <div class="step">
         <div class="step-num">1</div>
         <h3>We connect to your line</h3>
-        <p>We forward your missed calls or set up a smart number alongside your existing one â no porting required.</p>
+        <p>We forward your missed calls or set up a smart number alongside your existing one — no porting required.</p>
       </div>
       <div class="step">
         <div class="step-num">2</div>
@@ -476,12 +476,12 @@
       <div class="step">
         <div class="step-num">3</div>
         <h3>Text-back in 60 seconds</h3>
-        <p>If the caller hangs up, they get an SMS within 60 seconds: "Sorry we missed you â book at a time that suits you." with a booking link.</p>
+        <p>If the caller hangs up, they get an SMS within 60 seconds: "Sorry we missed you — book at a time that suits you." with a booking link.</p>
       </div>
       <div class="step">
         <div class="step-num">4</div>
         <h3>You see every lead</h3>
-        <p>A weekly Missed Call Report lands in your inbox. Who called, what they wanted, what the AI said â all in one place.</p>
+        <p>A weekly Missed Call Report lands in your inbox. Who called, what they wanted, what the AI said — all in one place.</p>
       </div>
     </div>
   </div>
@@ -495,32 +495,32 @@
 
   <div class="features-grid">
     <div class="feature-card">
-      <div class="feature-icon">ðï¸</div>
+      <div class="feature-icon">🎙️</div>
       <h3>AI Voice Agent</h3>
       <p>A natural-sounding AI answers with your practice name, handles common questions about appointments, pricing, emergency cover, and opening hours.</p>
     </div>
     <div class="feature-card">
-      <div class="feature-icon">ð¬</div>
+      <div class="feature-icon">💬</div>
       <h3>Instant SMS Text-Back</h3>
       <p>Every missed call triggers an automatic text within 60 seconds, personalised to the time of day and including a direct booking link.</p>
     </div>
     <div class="feature-card">
-      <div class="feature-icon">ð</div>
+      <div class="feature-icon">📅</div>
       <h3>Direct Booking Link</h3>
-      <p>Patients can book their own appointment 24/7 via a simple booking page â reducing phone tag and freeing up your receptionist.</p>
+      <p>Patients can book their own appointment 24/7 via a simple booking page — reducing phone tag and freeing up your receptionist.</p>
     </div>
     <div class="feature-card">
-      <div class="feature-icon">ð</div>
+      <div class="feature-icon">📊</div>
       <h3>Weekly Missed Call Report</h3>
-      <p>A clear weekly summary arrives in your inbox every Monday: calls missed, texts sent, bookings made, and revenue recovered â no login required.</p>
+      <p>A clear weekly summary arrives in your inbox every Monday: calls missed, texts sent, bookings made, and revenue recovered — no login required.</p>
     </div>
     <div class="feature-card">
-      <div class="feature-icon">ð</div>
+      <div class="feature-icon">🔒</div>
       <h3>GDPR Compliant</h3>
       <p>All patient data is handled in line with UK GDPR. SMS opt-in compliant, data retention limits set, and a full audit trail available on request.</p>
     </div>
     <div class="feature-card">
-      <div class="feature-icon">â¡</div>
+      <div class="feature-icon">⚡</div>
       <h3>48-Hour Setup</h3>
       <p>We handle all the technical configuration. Your team fills out a 5-minute onboarding form and we do the rest. You go live in under two days.</p>
     </div>
@@ -536,7 +536,7 @@
   <div class="pricing-grid">
     <div class="pricing-card">
       <div class="plan-name">Starter</div>
-      <div class="price">Â£297</div>
+      <div class="price">£297</div>
       <div class="price-note">/month</div>
       <div class="plan-desc">Perfect for single-surgery practices or those just getting started with automation.</div>
       <ul class="feature-list">
@@ -552,7 +552,7 @@
     <div class="pricing-card featured">
       <div class="pricing-badge">MOST POPULAR</div>
       <div class="plan-name">Growth</div>
-      <div class="price">Â£497</div>
+      <div class="price">£497</div>
       <div class="price-note muted-text">/month</div>
       <div class="plan-desc">For busy multi-surgery practices that can't afford to miss a single patient enquiry.</div>
       <ul class="feature-list">
@@ -568,7 +568,7 @@
 
     <div class="pricing-card">
       <div class="plan-name">Multi-Site</div>
-      <div class="price">Â£897</div>
+      <div class="price">£897</div>
       <div class="price-note">/month</div>
       <div class="plan-desc">For dental groups or corporates running 3+ sites who want one system across all locations.</div>
       <ul class="feature-list">
@@ -591,8 +591,8 @@
 
   <div class="testimonials-grid">
     <div class="testimonial-card">
-      <div class="stars">âââââ</div>
-      <blockquote>"We were losing new patients to voicemail and didn't even know it. RecallFlow's weekly report was an eye-opener â within the first month we'd recaptured 11 enquiries we would have lost. It more than pays for itself."</blockquote>
+      <div class="stars">★★★★★</div>
+      <blockquote>"We were losing new patients to voicemail and didn't even know it. RecallFlow's weekly report was an eye-opener — within the first month we'd recaptured 11 enquiries we would have lost. It more than pays for itself."</blockquote>
       <div class="testimonial-author">
         <div class="author-avatar">SM</div>
         <div>
@@ -603,8 +603,8 @@
     </div>
 
     <div class="testimonial-card">
-      <div class="stars">âââââ</div>
-      <blockquote>"Setup was genuinely 48 hours. The AI sounds great â patients have no idea it's not our receptionist. Emergency calls still get routed to the right place. Couldn't be happier with it."</blockquote>
+      <div class="stars">★★★★★</div>
+      <blockquote>"Setup was genuinely 48 hours. The AI sounds great — patients have no idea it's not our receptionist. Emergency calls still get routed to the right place. Couldn't be happier with it."</blockquote>
       <div class="testimonial-author">
         <div class="author-avatar">JH</div>
         <div>
@@ -615,7 +615,7 @@
     </div>
 
     <div class="testimonial-card">
-      <div class="stars">âââââ</div>
+      <div class="stars">★★★★★</div>
       <blockquote>"My front desk used to spend 45 minutes every morning returning missed calls. Now most patients have already booked themselves overnight. My team is less stressed and we're busier than ever."</blockquote>
       <div class="testimonial-author">
         <div class="author-avatar">PK</div>
@@ -632,17 +632,17 @@
 <section class="cta-section" id="demo">
   <h2>See exactly how many calls your clinic is missing</h2>
   <p>Book a free 20-minute demo. We'll show you a live call simulation and a free missed-call audit for your practice.</p>
-  <a href="mailto:hello@getrecallflow.com" class="btn-white">Book Your Free Demo â</a>
-  <p class="guarantee">No commitment required Â· Free audit included Â· Cancel anytime</p>
+  <a href="mailto:hello@getrecallflow.com" class="btn-white">Book Your Free Demo →</a>
+  <p class="guarantee">No commitment required · Free audit included · Cancel anytime</p>
 </section>
 
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">RecallFlow</div>
-  <div>Â© 2026 RecallFlow. All rights reserved.</div>
+  <div>© 2026 RecallFlow. All rights reserved.</div>
   <div>
-    <a href="#">Privacy Policy</a> &nbsp;Â·&nbsp;
-    <a href="#">Terms</a> &nbsp;Â·&nbsp;
+    <a href="#">Privacy Policy</a> &nbsp;·&nbsp;
+    <a href="#">Terms</a> &nbsp;·&nbsp;
     <a href="mailto:hello@getrecallflow.com">hello@getrecallflow.com</a>
   </div>
 </footer>
