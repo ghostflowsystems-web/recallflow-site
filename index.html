@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RecallFlow â Never Lose a Patient to a Missed Call Again</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --teal:       #0F766E;
+      --teal-dark:  #0D5E57;
+      --teal-light: #CCFBF1;
+      --blue:       #2563EB;
+      --bg:         #F8FAFC;
+      --surface:    #FFFFFF;
+      --text:       #0F172A;
+      --muted:      #64748B;
+      --border:     #E2E8F0;
+      --radius:     12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ââ NAV ââ */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 5%;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .nav-logo {
+      font-weight: 800; font-size: 1.25rem;
+      color: var(--teal); letter-spacing: -0.5px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .nav-logo span { color: var(--text); }
+    .nav-links { display: flex; align-items: center; gap: 32px; }
+    .nav-links a {
+      text-decoration: none; font-size: 0.875rem; font-weight: 500;
+      color: var(--muted); transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--teal); }
+    .btn-nav {
+      background: var(--teal); color: #fff;
+      padding: 8px 20px; border-radius: 8px;
+      font-size: 0.875rem; font-weight: 600;
+      text-decoration: none; transition: background 0.2s;
+    }
+    .btn-nav:hover { background: var(--teal-dark); }
+
+    /* ââ HERO ââ */
+    .hero {
+      padding: 100px 5% 80px;
+      text-align: center;
+      background: linear-gradient(160deg, #F0FDFA 0%, #F8FAFC 60%);
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: -120px; left: 50%; transform: translateX(-50%);
+      width: 800px; height: 800px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(15,118,110,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-b!dge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--teal-light); color: var(--teal);
+      font-size: 0.8rem; font-weight: 600; letter-spacing: 0.5px;
+      padding: 5px 14px; border-radius: 100px; margin-bottom: 28px;
+    }
+    .hero-badge::before { content: 'â'; font-size: 0.5rem; }
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 900; line-height: 1.1;
+      letter-spacing: -1.5px; color: var(--text);
+      max-width: 780px; margin: 0 auto 24px;
+    }
+    .hero h1 em { color: var(--teal); font-style: normal; }
+    .hero p {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: var(--muted); max-width: 560px;
+      margin: 0 auto 40px; font-weight: 400;
+    }
+    .hero-cta {
+      display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+    }
+    .btn-primary {
+      background: var(--teal); color: #fff;
+      padding: 14px 32px; border-radius: var(--radius);
+      font-size: 1rem; font-weight: 700;
+      text-decoration: none; transition: all 0.2s;
+      box-shadow: 0 4px 16px rgba(15,118,110,0.3);
+    }
+    .btn-primary:hover {
+      background: var(--teal-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 24px rgba(15,118,110,0.4);
+    }
+    .btn-secondary {
+      background: var(--surface); color: var(--text);
+      padding: 14px 32px; border-radius: var(--radius);
+      font-size: 1rem; font-weight: 600;
+      text-decoration: none; border: 1.5px solid var(--border);
+      transition: all 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--teal); color: var(--teal); }
+    .hero-sub {
+      margin-top: 20px; font-size: 0.8rem; color: var(--muted);
+    }
+
+    /* ââ SOCIAL PROOF BAR ââ */
+    .proof-bar {
+      background: var(--surface); border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 20px 5%;
+      display: flex; align-items: center; justify-content: center;
+      gap: 40px; flex-wrap: wrap;
+    }
+    .proof-bar span {
+      font-size: 0.82rem; color: var(--muted); font-weight: 500;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .proof-bar span strong { color: var(--text); font-weight: 700; }
+    .proof-dot { color: var(--border); }
+
+    /* ââ PROBLEM ââ */
+    .section { padding: 80px 5%; }
+    .section-label {
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--teal); margin-bottom: 12px;
+    }
+    .section h2 {
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 800; letter-spacing: -0.8px; line-height: 1.2;
+      max-width: 640px; margin-bottom: 16px;
+    }
+    .section p.lead {
+      font-size: 1.05rem; color: var(--muted);
+      max-width: 580px; margin-bottom: 48px;
+    }
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px; margin-top: 48px;
+    }
+    .problem-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+    }
+    .problem-card .stat {
+      font-size: 2.6rem; font-weight: 900;
+      color: var(--teal); letter-spacing: -1px; line-height: 1;
+      margin-bottom: 8px;
+    }
+    .problem-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+    .problem-card p { font-size: 0.875rem; color: var(--muted); line-height: 1.6; }
+
+    /* ââ HOW IT WORKS ââ */
+    .how-section {
+      background: var(--surface);
+      padding: 80px 5%;
+    }
+    .how-section .inner { max-width: 900px; margin: 0 auto; text-align: center; }
+    .how-section h2 { margin: 0 auto 12px; }
+    .how-section p.lead { margin: 0 auto 56px; }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0; position: relative;
+    }
+    .step {
+      padding: 32px 24px; text-align: center; position: relative;
+    }
+    .step:not(:last-child)::after {
+      content: 'â';
+      position: absolute; right: -12px; top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.4rem; color: var(--border);
+    }
+    .step-num {
+      width: 48px; height: 48px;
+      background: var(--teal); color: #fff;
+      border-radius: 50%; font-weight: 800; font-size: 1.1rem;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 16px;
+    }
+    .step h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+    .step p { font-size: 0.85rem; color: var(--muted); }
+
+    /* ââ FEATURES ââ */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px; margin-top: 48px;
+    }
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .feature-card:hover {
+      box-shadow: 0 8px 32px rgba(15,118,110,0.08);
+      transform: translateY(-2px);
+    }
+    .feature-icon {
+      width: 48px; height: 48px;
+      background: var(--teal-light); border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; margin-bottom: 20px;
+    }
+    .feature-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; }
+    .feature-card p { font-size: 0.875rem; color: var(--muted); line-height: 1.6; }
+
+    /* ââ PRICING ââ */
+    .pricing-section {
+      background: var(--surface);
+      padding: 80px 5%;
+      text-align: center;
+    }
+    .pricing-section h2 { margin: 0 auto 12px; }
+    .pricing-section p.lead { margin: 0 auto 56px; }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px; max-width: 920px; margin: 0 auto;
+    }
+    .pricing-card {
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: 16px;
+      padding: 40px 32px;
+      text-align: left; position: relative;
+    }
+    .pricing-card.featured {
+      background: var(--teal);
+      border-color: var(--teal);
+      color: #fff;
+    }
+    .pricing-card.featured .muted-text { color: rgba(255,255,255,0.7); }
+    .pricing-badge {
+      position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+      background: #F59E0B; color: #fff;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.5px;
+      padding: 4px 14px; border-radius: 100px; white-space: nowrap;
+    }
+    .plan-name {
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--teal); margin-bottom: 8px;
+    }
+    .pricing-card.featured .plan-name { color: rgba(255,255,255,0.8); }
+    .price {
+      font-size: 3rem; font-weight: 900;
+      letter-spacing: -1.5px; line-height: 1; margin-bottom: 4px;
+    }
+    .price-note { font-size: 0.82rem; color: var(--muted); margin-bottom: 8px; }
+    .pricing-card.featured .price-note { color: rgba(255,255,255,0.7); }
+    .plan-desc {
+      font-size: 0.875rem; color: var(--muted);
+      margin-bottom: 32px; line-height: 1.5;
+    }
+    .pricing-card.featured .plan-desc { color: rgba(255,255,255,0.75); }
+    .feature-list { list-style: none; margin-bottom: 32px; }
+    .feature-list li {
+      font-size: 0.875rem; padding: 6px 0;
+      display: flex; align-items: flex-start; gap: 10px;
+    }
+    .feature-list li::before { content: 'â'; font-weight: 700; color: var(--teal); flex-shrink: 0; margin-top: 1px; }
+    .pricing-card.featured .feature-list li::before { color: #A7F3D0; }
+    .pricing-card.featured .feature-list li { color: rgba(255,255,255,0.9); }
+    .btn-plan {
+      display: block; text-align: center;
+      background: var(--teal); color: #fff;
+      padding: 13px 24px; border-radius: var(--radius);
+      font-size: 0.95rem; font-weight: 700;
+      text-decoration: none; transition: background 0.2s;
+    }
+    .btn-plan:hover { background: var(--teal-dark); }
+    .pricing-card.featured .btn-plan {
+      background: #fff; color: var(--teal);
+    }
+    .pricing-card.featured .btn-plan:hover { background: #F0FDFA; }
+
+    /* ââ TESTIMONIALS ââ */
+    .testimonials-section { padding: 80px 5%; }
+    .testimonials-section h2 { margin-bottom: 48px; }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+    .testimonial-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+    }
+    .stars { color: #F59E0B; font-size: 0.9rem; margin-bottom: 16px; }
+    .testimonial-card blockquote {
+      font-size: 0.95rem; line-height: 1.7;
+      color: var(--text); margin-bottom: 24px;
+      font-style: italic;
+    }
+    .testimonial-author { display: flex; align-items: center; gap: 12px; }
+    .author-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--teal-light);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; font-weight: 700; color: var(--teal);
+    }
+    .author-name { font-size: 0.875rem; font-weight: 700; }
+    .author-role { font-size: 0.8rem; color: var(--muted); }
+
+    /* ââ CTA BANNER ââ */
+    .cta-section {
+      background: var(--teal);
+      padding: 80px 5%; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute; top: -200px; left: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-section h2 {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 900; color: #fff; margin-bottom: 16px;
+      letter-spacing: -0.8px; max-width: 640px; margin-left: auto; margin-right: auto;
+    }
+    .cta-section p {
+      font-size: 1.05rem; color: rgba(255,255,255,0.8);
+      margin-bottom: 40px; max-width: 480px;
+      margin-left: auto; margin-right: auto;
+    }
+    .cta-section .btn-white {
+      background: #fff; color: var(--teal);
+      padding: 16px 40px; border-radius: var(--radius);
+      font-size: 1rem; font-weight: 700;
+      text-decoration: none; transition: all 0.2s;
+      display: inline-block;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+    }
+    .cta-section .btn-white:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    }
+    .cta-section .guarantee {
+      margin-top: 20px; font-size: 0.82rem; color: rgba(255,255,255,0.65);
+    }
+
+    /* ââ FOOTER ââ */
+    footer {
+      background: var(--text); color: rgba(255,255,255,0.5);
+      padding: 40px 5%;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 20px; font-size: 0.82rem;
+    }
+    footer .footer-logo { font-weight: 800; color: #fff; font-size: 1rem; }
+    footer a { color: rgba(255,255,255,0.5); text-decoration: none; }
+    footer a:hover { color: rgba(255,255,255,0.8); }
+
+    /* ââ RESPONSIVE ââ */
+    @media (max-width: 640px) {
+      nav { padding: 0 4%; }
+      .nav-links { display: none; }
+      .step:not(:last-child)::after { display: none; }
+      .hero { padding: 64px 4% 56px; }
+      .section, .how-section, .pricing-section, .testimonials-section { padding: 60px 4%; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Recall<span>Flow</span></div>
+  <div class="nav-links">
+    <a href="#how">How It Works</a>
+    <a href="#features">Features</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#demo" class="btn-nav">Book a Demo</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">Built for Dental Clinics</div>
+  <h1>Your practice loses <em>Â£4,200/month</em> to missed calls. We stop that.</h1>
+  <p>RecallFlow installs an AI phone agent on your clinic line in 48 hours. Every missed call gets a follow-up text within 60 seconds â automatically.</p>
+  <div class="hero-cta">
+    <a href="#demo" class="btn-primary">See It in Action â</a>
+    <a href="#how" class="btn-secondary">How It Works</a>
+  </div>
+  <p class="hero-sub">No long-term contracts Â· Setup in 48 hours Â· Works with your existing phone number</p>
+</section>
+
+<!-- SOCIAL PROOF BAR -->
+<div class="proof-bar">
+  <span><strong>62%</strong> of callers hang up if not answered</span>
+  <span class="proof-dot">Â·</span>
+  <span><strong>85%</strong> of them won't call back</span>
+  <span class="proof-dot">Â·</span>
+  <span><strong>1 in 4</strong> missed calls is a new patient enquiry</span>
+  <span class="proof-dot">Â·</span>
+  <span><strong>Â£150+</strong> avg new patient LTV in dentistry</span>
+</div>
+
+<!-- PROBLEM -->
+<section class="section" id="problem">
+  <div class="section-label">The Problem</div>
+  <h2>Your phones are a leaking bucket</h2>
+  <p class="lead">While your team is busy with patients in chair, every unanswered ring walks out the door and into the arms of the competitor down the road.</p>
+
+  <div class="problem-grid">
+    <div class="problem-card">
+      <div class="stat">28</div>
+      <h3>Missed calls per week</h3>
+      <p>Average for a 3-surgery dental practice running without automated follow-up. Most go unanswered during lunch, evenings, and weekends.</p>
+    </div>
+    <div class="problem-card">
+      <div class="stat">7</div>
+      <h3>New patients lost monthly</h3>
+      <p>If even 25% of missed callers were new patient enquiries, that's 7 patients â and roughly Â£1,050+ in lost first-appointment revenue alone.</p>
+    </div>
+    <div class="problem-card">
+      <div class="stat">60s</div>
+      <h3>The response window</h3>
+      <p>Studies show leads responded to within 60 seconds are 21Ã more likely to convert. After 5 minutes, that chance drops by 80%.</p>
+    </div>
+    <div class="problem-card">
+      <div class="stat">Â£0</div>
+      <h3>What your voicemail earns you</h3>
+      <p>Less than 20% of callers leave a voicemail. The other 80% hang up and Google "dentist near me" again â and find someone else.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section" id="how">
+  <div class="inner">
+    <div class="section-label">How It Works</div>
+    <h2>Live in 48 hours. No new hardware. No disruption.</h2>
+    <p class="lead">RecallFlow runs silently in the background. Your team doesn't need to change anything.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>We connect to your line</h3>
+        <p>We forward your missed calls or set up a smart number alongside your existing one â no porting required.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>AI answers instantly</h3>
+        <p>Our AI voice agent picks up every call your team can't. It sounds human, answers FAQs, and captures patient intent.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Text-back in 60 seconds</h3>
+        <p>If the caller hangs up, they get an SMS within 60 seconds: "Sorry we missed you â book at a time that suits you." with a booking link.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h3>You see every lead</h3>
+        <p>A weekly Missed Call Report lands in your inbox. Who called, what they wanted, what the AI said â all in one place.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section" id="features">
+  <div class="section-label">Features</div>
+  <h2>Everything your front desk can't do at 7pm</h2>
+  <p class="lead">RecallFlow handles the overflow so your team can focus on the patients in front of them.</p>
+
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">ðï¸</div>
+      <h3>AI Voice Agent</h3>
+      <p>A natural-sounding AI answers with your practice name, handles common questions about appointments, pricing, emergency cover, and opening hours.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">ð¬</div>
+      <h3>Instant SMS Text-Back</h3>
+      <p>Every missed call triggers an automatic text within 60 seconds, personalised to the time of day and including a direct booking link.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">ð</div>
+      <h3>Direct Booking Link</h3>
+      <p>Patients can book their own appointment 24/7 via a simple booking page â reducing phone tag and freeing up your receptionist.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">ð</div>
+      <h3>Weekly Missed Call Report</h3>
+      <p>A clear weekly summary arrives in your inbox every Monday: calls missed, texts sent, bookings made, and revenue recovered â no login required.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">ð</div>
+      <h3>GDPR Compliant</h3>
+      <p>All patient data is handled in line with UK GDPR. SMS opt-in compliant, data retention limits set, and a full audit trail available on request.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">â¡</div>
+      <h3>48-Hour Setup</h3>
+      <p>We handle all the technical configuration. Your team fills out a 5-minute onboarding form and we do the rest. You go live in under two days.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section" id="pricing">
+  <div class="section-label">Pricing</div>
+  <h2>Simple, transparent pricing</h2>
+  <p class="lead">Recover the first patient and RecallFlow pays for itself. Everything after that is pure profit.</p>
+
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <div class="plan-name">Starter</div>
+      <div class="price">Â£297</div>
+      <div class="price-note">/month</div>
+      <div class="plan-desc">Perfect for single-surgery practices or those just getting started with automation.</div>
+      <ul class="feature-list">
+        <li>AI voice agent (up to 200 calls/mo)</li>
+        <li>SMS text-back within 60 seconds</li>
+        <li>Booking link integration</li>
+        <li>Weekly email report</li>
+        <li>Email support</li>
+      </ul>
+      <a href="#demo" class="btn-plan">Get Started</a>
+    </div>
+
+    <div class="pricing-card featured">
+      <div class="pricing-badge">MOST POPULAR</div>
+      <div class="plan-name">Growth</div>
+      <div class="price">Â£497</div>
+      <div class="price-note muted-text">/month</div>
+      <div class="plan-desc">For busy multi-surgery practices that can't afford to miss a single patient enquiry.</div>
+      <ul class="feature-list">
+        <li>Everything in Starter</li>
+        <li>Unlimited calls</li>
+        <li>Custom AI voice script (your brand tone)</li>
+        <li>After-hours emergency routing</li>
+        <li>Monthly strategy call</li>
+        <li>Priority support (2-hour response)</li>
+      </ul>
+      <a href="#demo" class="btn-plan">Get Started</a>
+    </div>
+
+    <div class="pricing-card">
+      <div class="plan-name">Multi-Site</div>
+      <div class="price">Â£897</div>
+      <div class="price-note">/month</div>
+      <div class="plan-desc">For dental groups or corporates running 3+ sites who want one system across all locations.</div>
+      <ul class="feature-list">
+        <li>Everything in Growth</li>
+        <li>Up to 5 locations</li>
+        <li>Unified reporting dashboard</li>
+        <li>Custom CRM integration</li>
+        <li>Dedicated account manager</li>
+        <li>Quarterly performance review</li>
+      </ul>
+      <a href="#demo" class="btn-plan">Get Started</a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section" id="reviews">
+  <div class="section-label">Results</div>
+  <h2>What practices say after 90 days</h2>
+
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="stars">âââââ</div>
+      <blockquote>"We were losing new patients to voicemail and didn't even know it. RecallFlow's weekly report was an eye-opener â within the first month we'd recaptured 11 enquiries we would have lost. It more than pays for itself."</blockquote>
+      <div class="testimonial-author">
+        <div class="author-avatar">SM</div>
+        <div>
+          <div class="author-name">Sarah M.</div>
+          <div class="author-role">Practice Manager, Surrey</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="stars">âââââ</div>
+      <blockquote>"Setup was genuinely 48 hours. The AI sounds great â patients have no idea it's not our receptionist. Emergency calls still get routed to the right place. Couldn't be happier with it."</blockquote>
+      <div class="testimonial-author">
+        <div class="author-avatar">JH</div>
+        <div>
+          <div class="author-name">Dr. James H.</div>
+          <div class="author-role">Principal Dentist, Manchester</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="stars">âââââ</div>
+      <blockquote>"My front desk used to spend 45 minutes every morning returning missed calls. Now most patients have already booked themselves overnight. My team is less stressed and we're busier than ever."</blockquote>
+      <div class="testimonial-author">
+        <div class="author-avatar">PK</div>
+        <div>
+          <div class="author-name">Priya K.</div>
+          <div class="author-role">Clinic Owner, Birmingham</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-section" id="demo">
+  <h2>See exactly how many calls your clinic is missing</h2>
+  <p>Book a free 20-minute demo. We'll show you a live call simulation and a free missed-call audit for your practice.</p>
+  <a href="mailto:hello@getrecallflow.com" class="btn-white">Book Your Free Demo â</a>
+  <p class="guarantee">No commitment required Â· Free audit included Â· Cancel anytime</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">RecallFlow</div>
+  <div>Â© 2026 RecallFlow. All rights reserved.</div>
+  <div>
+    <a href="#">Privacy Policy</a> &nbsp;Â·&nbsp;
+    <a href="#">Terms</a> &nbsp;Â·&nbsp;
+    <a href="mailto:hello@getrecallflow.com">hello@getrecallflow.com</a>
+  </div>
+</footer>
+
+</body>
+</html>
